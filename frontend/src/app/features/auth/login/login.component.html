@@ -1,0 +1,101 @@
+<div class="flex flex-col gap-8 w-full">
+  <!-- Cabeçalho -->
+  <div class="flex flex-col gap-3">
+    <h2 class="text-3xl sm:text-4xl font-black text-white tracking-tight">Entrar na Conta</h2>
+    <p class="text-base text-slate-400 font-normal leading-relaxed">
+      Selecione um perfil de demonstração abaixo ou informe seu e-mail corporativo.
+    </p>
+  </div>
+
+  <!-- Contas de Teste -->
+  <div class="flex flex-col gap-4">
+    <label class="block text-xs font-bold uppercase tracking-wider text-indigo-400">
+      ⚡ Perfis de Acesso Rápido (Clique em um para preencher)
+    </label>
+    
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <!-- Card Admin -->
+      <button
+        type="button"
+        (click)="email = 'felipe@example.com'"
+        class="flex items-center gap-4 p-4 rounded-2xl bg-[#13132b] hover:bg-indigo-500/20 border-2 border-white/10 hover:border-indigo-500 transition-all text-left group shadow-lg"
+        [class.!border-indigo-500]="email === 'felipe@example.com'"
+        [class.!bg-indigo-500/20]="email === 'felipe@example.com'"
+      >
+        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-black text-base shrink-0 shadow-md group-hover:scale-105 transition-transform">
+          FA
+        </div>
+        <div class="min-w-0 flex-1 flex flex-col justify-center">
+          <div class="flex items-center justify-between gap-2 mb-1">
+            <span class="font-bold text-sm text-white truncate">Felipe</span>
+            <span class="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-md bg-indigo-500/30 text-indigo-200 border border-indigo-400/30">Admin</span>
+          </div>
+          <span class="text-xs text-slate-300 font-mono truncate">felipe&#64;example.com</span>
+        </div>
+      </button>
+
+      <!-- Card Membro -->
+      <button
+        type="button"
+        (click)="email = 'ana@example.com'"
+        class="flex items-center gap-4 p-4 rounded-2xl bg-[#13132b] hover:bg-purple-500/20 border-2 border-white/10 hover:border-purple-500 transition-all text-left group shadow-lg"
+        [class.!border-purple-500]="email === 'ana@example.com'"
+        [class.!bg-purple-500/20]="email === 'ana@example.com'"
+      >
+        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center text-white font-black text-base shrink-0 shadow-md group-hover:scale-105 transition-transform">
+          AN
+        </div>
+        <div class="min-w-0 flex-1 flex flex-col justify-center">
+          <div class="flex items-center justify-between gap-2 mb-1">
+            <span class="font-bold text-sm text-white truncate">Ana Silva</span>
+            <span class="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-md bg-purple-500/30 text-purple-200 border border-purple-400/30">Membro</span>
+          </div>
+          <span class="text-xs text-slate-300 font-mono truncate">ana&#64;example.com</span>
+        </div>
+      </button>
+    </div>
+  </div>
+
+  <!-- Divisor Limpo (Sem Position Absolute) -->
+  <div class="flex items-center gap-4 py-2">
+    <div class="h-px bg-white/20 flex-1"></div>
+    <span class="text-xs font-bold text-slate-400 uppercase tracking-wider px-2 whitespace-nowrap">ou acesse com seu e-mail</span>
+    <div class="h-px bg-white/20 flex-1"></div>
+  </div>
+
+  <!-- Formulário Principal -->
+  <form (ngSubmit)="login()" class="flex flex-col gap-6">
+    @if (error) {
+      <div class="p-4 rounded-2xl bg-red-500/20 border border-red-500/40 text-red-200 text-sm font-medium flex items-center gap-3">
+        <span class="text-lg">⚠️</span>
+        <span>{{ error }}</span>
+      </div>
+    }
+
+    <div class="flex flex-col gap-2.5">
+      <label for="email" class="block text-xs font-bold uppercase tracking-wider text-slate-300">
+        E-mail Profissional
+      </label>
+      <input
+        id="email"
+        type="email"
+        [(ngModel)]="email"
+        name="email"
+        class="w-full bg-[#13132b] border-2 border-white/20 rounded-2xl px-5 py-4 text-white text-base font-medium placeholder:text-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/20 transition-all shadow-inner"
+        placeholder="digite@seuemail.com"
+        required
+      />
+    </div>
+
+    <button
+      type="submit"
+      [disabled]="isLoading || !email"
+      class="w-full mt-2 bg-gradient-to-r from-indigo-500 via-indigo-600 to-purple-600 hover:from-indigo-600 hover:to-purple-700 disabled:opacity-40 disabled:cursor-not-allowed text-white font-extrabold py-4 px-6 rounded-2xl shadow-xl shadow-indigo-500/30 hover:shadow-indigo-500/50 hover:-translate-y-0.5 active:translate-y-0 transition-all text-base tracking-wide flex items-center justify-center gap-2"
+    >
+      <span>{{ isLoading ? 'Autenticando no sistema...' : 'Acessar Plataforma' }}</span>
+      @if (!isLoading) {
+        <span class="text-xl leading-none">→</span>
+      }
+    </button>
+  </form>
+</div>
