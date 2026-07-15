@@ -1,15 +1,15 @@
 import { TestBed } from '@angular/core/testing';
 import { Router, UrlTree, RedirectCommand } from '@angular/router';
 import { roleGuard } from './role.guard';
-import { AuthService } from '../services/auth.service';
+import { AuthManager } from '../services/auth-manager';
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 
 describe('roleGuard', () => {
-  let authServiceMock: { user: any };
+  let authManagerMock: { user: any };
   let routerMock: { createUrlTree: any };
 
   beforeEach(() => {
-    authServiceMock = {
+    authManagerMock = {
       user: vi.fn()
     };
     routerMock = {
@@ -18,14 +18,14 @@ describe('roleGuard', () => {
 
     TestBed.configureTestingModule({
       providers: [
-        { provide: AuthService, useValue: authServiceMock },
+        { provide: AuthManager, useValue: authManagerMock },
         { provide: Router, useValue: routerMock }
       ]
     });
   });
 
   it('should allow navigation if user has required role', () => {
-    authServiceMock.user.mockReturnValue({ id: 'u1', name: 'Felipe', role: 'admin' });
+    authManagerMock.user.mockReturnValue({ id: 'u1', name: 'Felipe', role: 'admin' });
 
     const guard = roleGuard('admin');
     const result = TestBed.runInInjectionContext(() => guard({} as any, {} as any));
@@ -34,7 +34,7 @@ describe('roleGuard', () => {
   });
 
   it('should redirect if user does not have required role', () => {
-    authServiceMock.user.mockReturnValue({ id: 'u2', name: 'Ana', role: 'member' });
+    authManagerMock.user.mockReturnValue({ id: 'u2', name: 'Ana', role: 'member' });
     const urlTreeMock = {} as UrlTree;
     routerMock.createUrlTree.mockReturnValue(urlTreeMock);
 

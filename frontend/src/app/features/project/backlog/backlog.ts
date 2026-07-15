@@ -1,6 +1,6 @@
 import { Component, inject, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, RouterLink, RouterLinkActive } from '@angular/router';
-import { ProjectService } from '../../../core/services/project.service';
+import { ProjectApi } from '../../../core/services/project-api';
 import { Project, Task } from '../../../core/models';
 
 @Component({
@@ -10,7 +10,7 @@ import { Project, Task } from '../../../core/models';
 })
 export class Backlog implements OnInit {
   private route = inject(ActivatedRoute);
-  private projectService = inject(ProjectService);
+  private projectApi = inject(ProjectApi);
   private cdr = inject(ChangeDetectorRef);
 
   project: Project = this.route.parent!.snapshot.data['project'];

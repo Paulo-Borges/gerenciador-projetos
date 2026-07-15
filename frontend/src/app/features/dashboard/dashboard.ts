@@ -1,6 +1,6 @@
 import { Component, inject, OnInit, ChangeDetectorRef } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { ProjectService } from '../../core/services/project.service';
+import { ProjectApi } from '../../core/services/project-api';
 import { Project } from '../../core/models';
 
 @Component({
@@ -9,13 +9,13 @@ import { Project } from '../../core/models';
   templateUrl: './dashboard.html'
 })
 export class Dashboard implements OnInit {
-  private projectService = inject(ProjectService);
+  private projectApi = inject(ProjectApi);
   private cdr = inject(ChangeDetectorRef);
 
   projects: Project[] = [];
 
   ngOnInit(): void {
-    this.projectService.getAll().subscribe(projects => {
+    this.projectApi.getAll().subscribe(projects => {
       this.projects = projects;
       this.cdr.markForCheck();
     });

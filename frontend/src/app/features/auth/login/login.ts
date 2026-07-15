@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../../../core/services/auth.service';
+import { AuthManager } from '../../../core/services/auth-manager';
 
 @Component({
   selector: 'app-login',
@@ -13,13 +13,13 @@ export class Login {
   error = '';
   isLoading = false;
 
-  private authService = inject(AuthService);
+  private authManager = inject(AuthManager);
   private router = inject(Router);
 
   login(): void {
     this.isLoading = true;
     this.error = '';
-    this.authService.login(this.email).subscribe({
+    this.authManager.login(this.email).subscribe({
       next: () => {
         this.router.navigate(['/dashboard']);
       },

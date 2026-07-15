@@ -3,25 +3,25 @@ import { HttpClient, provideHttpClient, withInterceptors } from '@angular/common
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { Router } from '@angular/router';
 import { errorInterceptor } from './error.interceptor';
-import { AuthService } from '../services/auth.service';
+import { AuthManager } from '../services/auth-manager';
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 
 describe('errorInterceptor', () => {
   let httpMock: HttpTestingController;
   let httpClient: HttpClient;
   let routerMock: { navigate: any };
-  let authServiceMock: { logout: any };
+  let authManagerMock: { logout: any };
 
   beforeEach(() => {
     routerMock = { navigate: vi.fn() };
-    authServiceMock = { logout: vi.fn() };
+    authManagerMock = { logout: vi.fn() };
 
     TestBed.configureTestingModule({
       providers: [
         provideHttpClient(withInterceptors([errorInterceptor])),
         provideHttpClientTesting(),
         { provide: Router, useValue: routerMock },
-        { provide: AuthService, useValue: authServiceMock }
+        { provide: AuthManager, useValue: authManagerMock }
       ]
     });
 
@@ -39,7 +39,7 @@ describe('errorInterceptor', () => {
     const req = httpMock.expectOne('/test');
     req.flush('Unauthorized', { status: 401, statusText: 'Unauthorized' });
 
-    expect(authServiceMock.logout).toHaveBeenCalled();
+    expect(authManagerMock.logout).toHaveBeenCalled();
     expect(routerMock.navigate).toHaveBeenCalledWith(['/login']);
   });
 });

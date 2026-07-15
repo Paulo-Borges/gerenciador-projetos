@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { AuthService } from '../../../core/services/auth.service';
+import { AuthManager } from '../../../core/services/auth-manager';
 import { HasRoleDirective } from '../../directives/has-role.directive';
 import { InitialsPipe } from '../../pipes/initials.pipe';
 
@@ -10,9 +10,9 @@ import { InitialsPipe } from '../../pipes/initials.pipe';
   templateUrl: './sidebar.html'
 })
 export class Sidebar {
-  authService = inject(AuthService);
+  authManager = inject(AuthManager);
 
   logout(): void {
-    this.authService.logout();
+    this.authManager.logout();
   }
 }

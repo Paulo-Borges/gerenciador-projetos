@@ -1,7 +1,7 @@
 import { Component, inject, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { TaskService } from '../../../core/services/task.service';
+import { TaskApi } from '../../../core/services/task-api';
 import { Task } from '../../../core/models';
 import { HasUnsavedChanges } from '../../../core/guards/unsaved-changes.guard';
 
@@ -14,7 +14,7 @@ import { HasUnsavedChanges } from '../../../core/guards/unsaved-changes.guard';
 export class TaskDetail implements OnInit, HasUnsavedChanges {
   private route = inject(ActivatedRoute);
   private router = inject(Router);
-  private taskService = inject(TaskService);
+  private taskApi = inject(TaskApi);
   private cdr = inject(ChangeDetectorRef);
 
   task: Task | null = null;
@@ -24,7 +24,7 @@ export class TaskDetail implements OnInit, HasUnsavedChanges {
 
   ngOnInit(): void {
     const taskId = this.route.snapshot.paramMap.get('taskId')!;
-    this.taskService.getById(taskId).subscribe(task => {
+    this.taskApi.getById(taskId).subscribe(task => {
       this.task = task;
       this.editedTask = { ...task };
       this.cdr.markForCheck();
@@ -44,7 +44,7 @@ export class TaskDetail implements OnInit, HasUnsavedChanges {
     if (!this.editedTask) return;
     this.isSaving = true;
     this.cdr.markForCheck();
-    this.taskService.update(this.editedTask.id, this.editedTask).subscribe({
+    this.taskApi.update(this.editedTask.id, this.editedTask).subscribe({
       next: (updated) => {
         this.task = updated;
         this.isDirty = false;

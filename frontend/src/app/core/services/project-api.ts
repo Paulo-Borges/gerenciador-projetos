@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Project, Task, User } from '../models';
 
 @Injectable({ providedIn: 'root' })
-export class ProjectService {
+export class ProjectApi {
   private readonly apiUrl = 'http://localhost:3000/api';
 
   constructor(private http: HttpClient) {}

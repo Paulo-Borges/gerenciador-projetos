@@ -5,7 +5,7 @@ import { Observable, tap } from 'rxjs';
 import { User } from '../models';
 
 @Injectable({ providedIn: 'root' })
-export class AuthService {
+export class AuthManager {
   private readonly apiUrl = 'http://localhost:3000/api/auth';
 
   private currentUser = signal<User | null>(null);

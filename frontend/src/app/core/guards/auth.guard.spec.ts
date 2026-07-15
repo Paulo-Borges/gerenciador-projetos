@@ -1,15 +1,15 @@
 import { TestBed } from '@angular/core/testing';
 import { Router, UrlTree, RedirectCommand } from '@angular/router';
 import { authGuard } from './auth.guard';
-import { AuthService } from '../services/auth.service';
+import { AuthManager } from '../services/auth-manager';
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 
 describe('authGuard', () => {
-  let authServiceMock: { isAuthenticated: any };
+  let authManagerMock: { isAuthenticated: any };
   let routerMock: { createUrlTree: any };
 
   beforeEach(() => {
-    authServiceMock = {
+    authManagerMock = {
       isAuthenticated: vi.fn()
     };
     routerMock = {
@@ -18,14 +18,14 @@ describe('authGuard', () => {
 
     TestBed.configureTestingModule({
       providers: [
-        { provide: AuthService, useValue: authServiceMock },
+        { provide: AuthManager, useValue: authManagerMock },
         { provide: Router, useValue: routerMock }
       ]
     });
   });
 
   it('should allow navigation if user is authenticated', () => {
-    authServiceMock.isAuthenticated.mockReturnValue(true);
+    authManagerMock.isAuthenticated.mockReturnValue(true);
 
     const result = TestBed.runInInjectionContext(() => authGuard({} as any, {} as any));
 
@@ -33,7 +33,7 @@ describe('authGuard', () => {
   });
 
   it('should redirect to /login if user is not authenticated', () => {
-    authServiceMock.isAuthenticated.mockReturnValue(false);
+    authManagerMock.isAuthenticated.mockReturnValue(false);
     const urlTreeMock = {} as UrlTree;
     routerMock.createUrlTree.mockReturnValue(urlTreeMock);
 

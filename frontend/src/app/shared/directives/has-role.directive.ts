@@ -1,5 +1,5 @@
 import { Directive, inject, input, TemplateRef, ViewContainerRef, effect } from '@angular/core';
-import { AuthService } from '../../core/services/auth.service';
+import { AuthManager } from '../../core/services/auth-manager';
 
 @Directive({
   selector: '[hasRole]'
@@ -7,7 +7,7 @@ import { AuthService } from '../../core/services/auth.service';
 export class HasRoleDirective {
   private templateRef = inject(TemplateRef<any>);
   private viewContainer = inject(ViewContainerRef);
-  private authService = inject(AuthService);
+  private authManager = inject(AuthManager);
   private hasView = false;
 
   hasRole = input.required<string>();
@@ -15,7 +15,7 @@ export class HasRoleDirective {
   constructor() {
     effect(() => {
       const requiredRole = this.hasRole();
-      const user = this.authService.user();
+      const user = this.authManager.user();
       const shouldShow = user?.role === requiredRole;
 
       if (shouldShow && !this.hasView) {

@@ -2,11 +2,11 @@ import { TestBed } from '@angular/core/testing';
 import { HttpClient, provideHttpClient } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { Router } from '@angular/router';
-import { AuthService } from './auth.service';
+import { AuthManager } from './auth-manager';
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 
-describe('AuthService', () => {
-  let service: AuthService;
+describe('AuthManager', () => {
+  let service: AuthManager;
   let httpMock: HttpTestingController;
   let routerMock: { navigate: any };
 
@@ -16,14 +16,14 @@ describe('AuthService', () => {
 
     TestBed.configureTestingModule({
       providers: [
-        AuthService,
+        AuthManager,
         provideHttpClient(),
         provideHttpClientTesting(),
         { provide: Router, useValue: routerMock }
       ]
     });
 
-    service = TestBed.inject(AuthService);
+    service = TestBed.inject(AuthManager);
     httpMock = TestBed.inject(HttpTestingController);
   });
 

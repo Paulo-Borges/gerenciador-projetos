@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Task } from '../models';
 
 @Injectable({ providedIn: 'root' })
-export class TaskService {
+export class TaskApi {
   private readonly apiUrl = 'http://localhost:3000/api/tasks';
 
   constructor(private http: HttpClient) {}

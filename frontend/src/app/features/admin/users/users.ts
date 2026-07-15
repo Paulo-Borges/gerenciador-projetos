@@ -1,6 +1,6 @@
 import { Component, inject, OnInit, ChangeDetectorRef } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { AdminService } from '../../../core/services/admin.service';
+import { AdminApi } from '../../../core/services/admin-api';
 import { User } from '../../../core/models';
 import { InitialsPipe } from '../../../shared/pipes/initials.pipe';
 
@@ -10,12 +10,12 @@ import { InitialsPipe } from '../../../shared/pipes/initials.pipe';
   templateUrl: './users.html'
 })
 export class Users implements OnInit {
-  private adminService = inject(AdminService);
+  private adminApi = inject(AdminApi);
   private cdr = inject(ChangeDetectorRef);
   users: User[] = [];
 
   ngOnInit(): void {
-    this.adminService.getUsers().subscribe(users => {
+    this.adminApi.getUsers().subscribe(users => {
       this.users = users;
       this.cdr.markForCheck();
     });

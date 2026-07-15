@@ -5,7 +5,7 @@ import { User } from '../models';
 import { AuditLog } from '../models';
 
 @Injectable({ providedIn: 'root' })
-export class AdminService {
+export class AdminApi {
   private readonly apiUrl = 'http://localhost:3000/api/admin';
 
   constructor(private http: HttpClient) {}

@@ -1,7 +1,7 @@
 import { Component, inject, OnInit, ChangeDetectorRef } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { AdminService } from '../../../core/services/admin.service';
+import { AdminApi } from '../../../core/services/admin-api';
 import { AuditLog as AuditLogModel } from '../../../core/models';
 
 @Component({
@@ -10,12 +10,12 @@ import { AuditLog as AuditLogModel } from '../../../core/models';
   templateUrl: './audit-log.html'
 })
 export class AuditLog implements OnInit {
-  private adminService = inject(AdminService);
+  private adminApi = inject(AdminApi);
   private cdr = inject(ChangeDetectorRef);
   logs: AuditLogModel[] = [];
 
   ngOnInit(): void {
-    this.adminService.getAuditLog().subscribe(logs => {
+    this.adminApi.getAuditLog().subscribe(logs => {
       this.logs = logs;
       this.cdr.markForCheck();
     });
