@@ -1,7 +1,7 @@
 import { Component, inject, OnInit, signal, computed } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { ProjectApi } from '../../../core/services/project-api';
-import { Project, Task } from '../../../core/models';
+import { IProject, ITask } from '../../../core/models';
 
 @Component({
   selector: 'app-board',
@@ -13,8 +13,8 @@ export class Board implements OnInit {
   private router = inject(Router);
   private projectApi = inject(ProjectApi);
 
-  project: Project = this.route.parent!.snapshot.data['project'];
-  tasks = signal<Task[]>(this.route.snapshot.data['tasks'] || []);
+  project: IProject = this.route.parent!.snapshot.data['project'];
+  tasks = signal<ITask[]>(this.route.snapshot.data['tasks'] || []);
 
   todoTasks = computed(() => this.tasks().filter((t) => t.status === 'todo'));
   inProgressTasks = computed(() => this.tasks().filter((t) => t.status === 'in_progress'));

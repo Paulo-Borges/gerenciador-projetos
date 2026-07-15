@@ -2,8 +2,8 @@ import { Component, inject, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { TaskApi } from '../../../core/services/task-api';
-import { Task } from '../../../core/models';
-import { HasUnsavedChanges } from '../../../core/guards/unsaved-changes.guard';
+import { ITask } from '../../../core/models';
+import { HasUnsavedChanges } from '../../../core/guards/unsaved-changes-guard';
 
 @Component({
   selector: 'app-task-detail',
@@ -17,8 +17,8 @@ export class TaskDetail implements OnInit, HasUnsavedChanges {
   private taskApi = inject(TaskApi);
   private cdr = inject(ChangeDetectorRef);
 
-  task: Task | null = null;
-  editedTask: Task | null = null;
+  task: ITask | null = null;
+  editedTask: ITask | null = null;
   isDirty = false;
   isSaving = false;
 

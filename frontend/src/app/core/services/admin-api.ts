@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { User } from '../models';
-import { AuditLog } from '../models';
+import { IUser, IAuditLog } from '../models';
 
 @Injectable({ providedIn: 'root' })
 export class AdminApi {
@@ -10,11 +9,11 @@ export class AdminApi {
 
   constructor(private http: HttpClient) {}
 
-  getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(`${this.apiUrl}/users`);
+  getUsers(): Observable<IUser[]> {
+    return this.http.get<IUser[]>(`${this.apiUrl}/users`);
   }
 
-  getAuditLog(): Observable<AuditLog[]> {
-    return this.http.get<AuditLog[]>(`${this.apiUrl}/audit-log`);
+  getAuditLog(): Observable<IAuditLog[]> {
+    return this.http.get<IAuditLog[]>(`${this.apiUrl}/audit-log`);
   }
 }

@@ -1,7 +1,7 @@
 import { Component, inject, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, RouterLink, RouterLinkActive } from '@angular/router';
 import { ProjectApi } from '../../../core/services/project-api';
-import { Project, Task } from '../../../core/models';
+import { IProject, ITask } from '../../../core/models';
 
 @Component({
   selector: 'app-backlog',
@@ -13,8 +13,8 @@ export class Backlog implements OnInit {
   private projectApi = inject(ProjectApi);
   private cdr = inject(ChangeDetectorRef);
 
-  project: Project = this.route.parent!.snapshot.data['project'];
-  tasks: Task[] = this.route.snapshot.data['tasks'] || [];
+  project: IProject = this.route.parent!.snapshot.data['project'];
+  tasks: ITask[] = this.route.snapshot.data['tasks'] || [];
 
   ngOnInit(): void {
     this.route.data.subscribe(data => {

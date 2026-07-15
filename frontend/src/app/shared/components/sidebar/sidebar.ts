@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthManager } from '../../../core/services/auth-manager';
-import { HasRoleDirective } from '../../directives/has-role.directive';
-import { InitialsPipe } from '../../pipes/initials.pipe';
+import { HasRoleDirective } from '../../directives/has-role-directive';
+import { InitialsPipe } from '../../pipes/initials-pipe';
 
 @Component({
   selector: 'app-sidebar',

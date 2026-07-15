@@ -1,7 +1,7 @@
 import { Component, inject, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ProjectApi } from '../../core/services/project-api';
-import { User } from '../../core/models';
-import { InitialsPipe } from '../../shared/pipes/initials.pipe';
+import { IUser } from '../../core/models';
+import { InitialsPipe } from '../../shared/pipes/initials-pipe';
 
 @Component({
   selector: 'app-members',
@@ -12,7 +12,7 @@ export class Members implements OnInit {
   private projectApi = inject(ProjectApi);
   private cdr = inject(ChangeDetectorRef);
 
-  members: User[] = [];
+  members: IUser[] = [];
 
   ngOnInit(): void {
     this.projectApi.getMembers().subscribe(members => {

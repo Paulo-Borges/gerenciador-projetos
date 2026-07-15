@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
-import { projectResolver } from '../../core/resolvers/project.resolver';
-import { projectTasksResolver } from '../../core/resolvers/project-tasks.resolver';
-import { unsavedChangesGuard } from '../../core/guards/unsaved-changes.guard';
+import { projectResolver } from '../../core/resolvers/project-resolver';
+import { projectTasksResolver } from '../../core/resolvers/project-tasks-resolver';
+import { unsavedChangesGuard } from '../../core/guards/unsaved-changes-guard';
 
 export const PROJECT_ROUTES: Routes = [
   {

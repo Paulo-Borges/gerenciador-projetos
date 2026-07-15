@@ -1,8 +1,8 @@
 import { Component, inject, OnInit, ChangeDetectorRef } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { AdminApi } from '../../../core/services/admin-api';
-import { User } from '../../../core/models';
-import { InitialsPipe } from '../../../shared/pipes/initials.pipe';
+import { IUser } from '../../../core/models';
+import { InitialsPipe } from '../../../shared/pipes/initials-pipe';
 
 @Component({
   selector: 'app-users',
@@ -12,7 +12,7 @@ import { InitialsPipe } from '../../../shared/pipes/initials.pipe';
 export class Users implements OnInit {
   private adminApi = inject(AdminApi);
   private cdr = inject(ChangeDetectorRef);
-  users: User[] = [];
+  users: IUser[] = [];
 
   ngOnInit(): void {
     this.adminApi.getUsers().subscribe(users => {

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Task } from '../models';
+import { ITask } from '../models';
 
 @Injectable({ providedIn: 'root' })
 export class TaskApi {
@@ -9,11 +9,11 @@ export class TaskApi {
 
   constructor(private http: HttpClient) {}
 
-  getById(taskId: string): Observable<Task> {
-    return this.http.get<Task>(`${this.apiUrl}/${taskId}`);
+  getById(taskId: string): Observable<ITask> {
+    return this.http.get<ITask>(`${this.apiUrl}/${taskId}`);
   }
 
-  update(taskId: string, task: Partial<Task>): Observable<Task> {
-    return this.http.put<Task>(`${this.apiUrl}/${taskId}`, task);
+  update(taskId: string, task: Partial<ITask>): Observable<ITask> {
+    return this.http.put<ITask>(`${this.apiUrl}/${taskId}`, task);
   }
 }

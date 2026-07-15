@@ -1,7 +1,7 @@
 import { Component, inject, OnInit, ChangeDetectorRef } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ProjectApi } from '../../core/services/project-api';
-import { Project } from '../../core/models';
+import { IProject } from '../../core/models';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,7 +12,7 @@ export class Dashboard implements OnInit {
   private projectApi = inject(ProjectApi);
   private cdr = inject(ChangeDetectorRef);
 
-  projects: Project[] = [];
+  projects: IProject[] = [];
 
   ngOnInit(): void {
     this.projectApi.getAll().subscribe(projects => {

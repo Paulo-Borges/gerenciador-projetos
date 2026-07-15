@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, RouterLink, RouterLinkActive } from '@angular/router';
-import { Project } from '../../../core/models';
+import { IProject } from '../../../core/models';
 
 @Component({
   selector: 'app-project-settings',
@@ -9,5 +9,5 @@ import { Project } from '../../../core/models';
 })
 export class ProjectSettings {
   private route = inject(ActivatedRoute);
-  project: Project = this.route.parent!.snapshot.data['project'];
+  project: IProject = this.route.parent!.snapshot.data['project'];
 }

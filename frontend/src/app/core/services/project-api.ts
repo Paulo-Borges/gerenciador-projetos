@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Project, Task, User } from '../models';
+import { IProject, ITask, IUser } from '../models';
 
 @Injectable({ providedIn: 'root' })
 export class ProjectApi {
@@ -9,23 +9,23 @@ export class ProjectApi {
 
   constructor(private http: HttpClient) {}
 
-  getAll(): Observable<Project[]> {
-    return this.http.get<Project[]>(`${this.apiUrl}/projects`);
+  getAll(): Observable<IProject[]> {
+    return this.http.get<IProject[]>(`${this.apiUrl}/projects`);
   }
 
-  getMembers(): Observable<User[]> {
-    return this.http.get<User[]>(`${this.apiUrl}/members`);
+  getMembers(): Observable<IUser[]> {
+    return this.http.get<IUser[]>(`${this.apiUrl}/members`);
   }
 
-  getById(projectId: string): Observable<Project> {
-    return this.http.get<Project>(`${this.apiUrl}/projects/${projectId}`);
+  getById(projectId: string): Observable<IProject> {
+    return this.http.get<IProject>(`${this.apiUrl}/projects/${projectId}`);
   }
 
-  getTasks(projectId: string): Observable<Task[]> {
-    return this.http.get<Task[]>(`${this.apiUrl}/projects/${projectId}/tasks`);
+  getTasks(projectId: string): Observable<ITask[]> {
+    return this.http.get<ITask[]>(`${this.apiUrl}/projects/${projectId}/tasks`);
   }
 
-  createTask(projectId: string, task: Partial<Task>): Observable<Task> {
-    return this.http.post<Task>(`${this.apiUrl}/projects/${projectId}/tasks`, task);
+  createTask(projectId: string, task: Partial<ITask>): Observable<ITask> {
+    return this.http.post<ITask>(`${this.apiUrl}/projects/${projectId}/tasks`, task);
   }
 }
