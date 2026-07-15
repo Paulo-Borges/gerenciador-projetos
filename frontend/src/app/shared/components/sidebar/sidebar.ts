@@ -7,8 +7,7 @@ import { InitialsPipe } from '../../pipes/initials.pipe';
 @Component({
   selector: 'app-sidebar',
   imports: [RouterLink, RouterLinkActive, HasRoleDirective, InitialsPipe],
-  templateUrl: './sidebar.html',
-  styleUrls: ['./sidebar.scss']
+  templateUrl: './sidebar.html'
 })
 export class Sidebar {
   authService = inject(AuthService);

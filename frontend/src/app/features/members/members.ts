@@ -6,8 +6,7 @@ import { InitialsPipe } from '../../shared/pipes/initials.pipe';
 @Component({
   selector: 'app-members',
   imports: [InitialsPipe],
-  templateUrl: './members.html',
-  styleUrls: ['./members.scss']
+  templateUrl: './members.html'
 })
 export class Members implements OnInit {
   private projectService = inject(ProjectService);

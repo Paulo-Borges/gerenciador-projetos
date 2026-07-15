@@ -5,8 +5,7 @@ import { Project } from '../../../core/models';
 @Component({
   selector: 'app-project-settings',
   imports: [RouterLink, RouterLinkActive],
-  templateUrl: './project-settings.html',
-  styleUrls: ['./project-settings.scss']
+  templateUrl: './project-settings.html'
 })
 export class ProjectSettings {
   private route = inject(ActivatedRoute);

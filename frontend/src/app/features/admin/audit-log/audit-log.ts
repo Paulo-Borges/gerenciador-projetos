@@ -7,8 +7,7 @@ import { AuditLog as AuditLogModel } from '../../../core/models';
 @Component({
   selector: 'app-audit-log',
   imports: [DatePipe, RouterLink, RouterLinkActive],
-  templateUrl: './audit-log.html',
-  styleUrls: ['./audit-log.scss']
+  templateUrl: './audit-log.html'
 })
 export class AuditLog implements OnInit {
   private adminService = inject(AdminService);

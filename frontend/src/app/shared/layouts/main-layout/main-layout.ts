@@ -5,8 +5,7 @@ import { Sidebar } from '../../components/sidebar/sidebar';
 @Component({
   selector: 'app-main-layout',
   imports: [RouterOutlet, Sidebar],
-  templateUrl: './main-layout.html',
-  styleUrls: ['./main-layout.scss']
+  templateUrl: './main-layout.html'
 })
 export class MainLayout {
 }

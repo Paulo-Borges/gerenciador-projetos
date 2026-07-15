@@ -6,8 +6,7 @@ import { Project, Task } from '../../../core/models';
 @Component({
   selector: 'app-backlog',
   imports: [RouterLink, RouterLinkActive],
-  templateUrl: './backlog.html',
-  styleUrls: ['./backlog.scss']
+  templateUrl: './backlog.html'
 })
 export class Backlog implements OnInit {
   private route = inject(ActivatedRoute);

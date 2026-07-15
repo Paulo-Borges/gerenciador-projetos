@@ -6,8 +6,7 @@ import { Project, Task } from '../../../core/models';
 @Component({
   selector: 'app-board',
   imports: [RouterLink, RouterLinkActive],
-  templateUrl: './board.html',
-  styleUrls: ['./board.scss'],
+  templateUrl: './board.html'
 })
 export class Board implements OnInit {
   private route = inject(ActivatedRoute);

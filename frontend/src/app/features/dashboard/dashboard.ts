@@ -6,8 +6,7 @@ import { Project } from '../../core/models';
 @Component({
   selector: 'app-dashboard',
   imports: [RouterLink],
-  templateUrl: './dashboard.html',
-  styleUrls: ['./dashboard.scss']
+  templateUrl: './dashboard.html'
 })
 export class Dashboard implements OnInit {
   private projectService = inject(ProjectService);
