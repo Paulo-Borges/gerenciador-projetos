@@ -5,9 +5,9 @@ import { AuthService } from '../../../core/services/auth.service';
 @Component({
   selector: 'app-profile',
   imports: [RouterLink, RouterLinkActive],
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss']
+  templateUrl: './profile.html',
+  styleUrls: ['./profile.scss']
 })
-export class ProfileComponent {
+export class Profile {
   authService = inject(AuthService);
 }

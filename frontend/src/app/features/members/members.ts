@@ -6,10 +6,10 @@ import { InitialsPipe } from '../../shared/pipes/initials.pipe';
 @Component({
   selector: 'app-members',
   imports: [InitialsPipe],
-  templateUrl: './members.component.html',
-  styleUrls: ['./members.component.scss']
+  templateUrl: './members.html',
+  styleUrls: ['./members.scss']
 })
-export class MembersComponent implements OnInit {
+export class Members implements OnInit {
   private projectService = inject(ProjectService);
   private cdr = inject(ChangeDetectorRef);
 

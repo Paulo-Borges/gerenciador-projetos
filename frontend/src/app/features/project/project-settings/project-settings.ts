@@ -5,10 +5,10 @@ import { Project } from '../../../core/models';
 @Component({
   selector: 'app-project-settings',
   imports: [RouterLink, RouterLinkActive],
-  templateUrl: './project-settings.component.html',
-  styleUrls: ['./project-settings.component.scss']
+  templateUrl: './project-settings.html',
+  styleUrls: ['./project-settings.scss']
 })
-export class ProjectSettingsComponent {
+export class ProjectSettings {
   private route = inject(ActivatedRoute);
   project: Project = this.route.parent!.snapshot.data['project'];
 }

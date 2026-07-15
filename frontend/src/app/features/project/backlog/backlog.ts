@@ -6,10 +6,10 @@ import { Project, Task } from '../../../core/models';
 @Component({
   selector: 'app-backlog',
   imports: [RouterLink, RouterLinkActive],
-  templateUrl: './backlog.component.html',
-  styleUrls: ['./backlog.component.scss']
+  templateUrl: './backlog.html',
+  styleUrls: ['./backlog.scss']
 })
-export class BacklogComponent implements OnInit {
+export class Backlog implements OnInit {
   private route = inject(ActivatedRoute);
   private projectService = inject(ProjectService);
   private cdr = inject(ChangeDetectorRef);

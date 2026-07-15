@@ -7,10 +7,10 @@ import { InitialsPipe } from '../../pipes/initials.pipe';
 @Component({
   selector: 'app-sidebar',
   imports: [RouterLink, RouterLinkActive, HasRoleDirective, InitialsPipe],
-  templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.scss']
+  templateUrl: './sidebar.html',
+  styleUrls: ['./sidebar.scss']
 })
-export class SidebarComponent {
+export class Sidebar {
   authService = inject(AuthService);
 
   logout(): void {

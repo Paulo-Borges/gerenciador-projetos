@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './core/guards/auth.guard';
 import { roleGuard } from './core/guards/role.guard';
-import { AuthLayoutComponent } from './shared/layouts/auth-layout/auth-layout.component';
-import { MainLayoutComponent } from './shared/layouts/main-layout/main-layout.component';
+import { AuthLayout } from './shared/layouts/auth-layout/auth-layout';
+import { MainLayout } from './shared/layouts/main-layout/main-layout';
 
 export const routes: Routes = [
   // Redirect raiz
@@ -11,7 +11,7 @@ export const routes: Routes = [
   // Auth (sem guard)
   {
     path: '',
-    component: AuthLayoutComponent,
+    component: AuthLayout,
     children: [
       {
         path: 'login',
@@ -24,12 +24,12 @@ export const routes: Routes = [
   // Área Principal Protegida
   {
     path: '',
-    component: MainLayoutComponent,
+    component: MainLayout,
     canActivate: [authGuard],
     children: [
       {
         path: 'dashboard',
-        loadComponent: () => import('./features/dashboard/dashboard.component').then(m => m.DashboardComponent),
+        loadComponent: () => import('./features/dashboard/dashboard').then(m => m.Dashboard),
         title: 'Dashboard'
       },
       {
@@ -39,7 +39,7 @@ export const routes: Routes = [
       },
       {
         path: 'members',
-        loadComponent: () => import('./features/members/members.component').then(m => m.MembersComponent),
+        loadComponent: () => import('./features/members/members').then(m => m.Members),
         title: 'Membros'
       },
       {
@@ -57,7 +57,7 @@ export const routes: Routes = [
   // 404
   {
     path: '**',
-    loadComponent: () => import('./features/not-found/not-found.component').then(m => m.NotFoundComponent),
+    loadComponent: () => import('./features/not-found/not-found').then(m => m.NotFound),
     title: 'Página não encontrada'
   }
 ];

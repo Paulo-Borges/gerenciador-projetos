@@ -7,10 +7,10 @@ import { InitialsPipe } from '../../../shared/pipes/initials.pipe';
 @Component({
   selector: 'app-users',
   imports: [InitialsPipe, RouterLink, RouterLinkActive],
-  templateUrl: './users.component.html',
-  styleUrls: ['./users.component.scss']
+  templateUrl: './users.html',
+  styleUrls: ['./users.scss']
 })
-export class UsersComponent implements OnInit {
+export class Users implements OnInit {
   private adminService = inject(AdminService);
   private cdr = inject(ChangeDetectorRef);
   users: User[] = [];

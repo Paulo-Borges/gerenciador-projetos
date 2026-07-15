@@ -11,21 +11,21 @@ export const PROJECT_ROUTES: Routes = [
       { path: '', redirectTo: 'board', pathMatch: 'full' },
       {
         path: 'board',
-        loadComponent: () => import('./board/board.component').then((m) => m.BoardComponent),
+        loadComponent: () => import('./board/board').then((m) => m.Board),
         resolve: { tasks: projectTasksResolver },
         title: 'Board',
       },
       {
         path: 'backlog',
-        loadComponent: () => import('./backlog/backlog.component').then((m) => m.BacklogComponent),
+        loadComponent: () => import('./backlog/backlog').then((m) => m.Backlog),
         resolve: { tasks: projectTasksResolver },
         title: 'Backlog',
       },
       {
         path: 'settings',
         loadComponent: () =>
-          import('./project-settings/project-settings.component').then(
-            (m) => m.ProjectSettingsComponent,
+          import('./project-settings/project-settings').then(
+            (m) => m.ProjectSettings,
           ),
         title: 'Configurações do Projeto',
       },
@@ -33,7 +33,7 @@ export const PROJECT_ROUTES: Routes = [
         path: 'task/:taskId',
         outlet: 'detail',
         loadComponent: () =>
-          import('./task-detail/task-detail.component').then((m) => m.TaskDetailComponent),
+          import('./task-detail/task-detail').then((m) => m.TaskDetail),
         canDeactivate: [unsavedChangesGuard],
         title: 'Detalhes da Task',
       },

@@ -8,10 +8,10 @@ import { HasUnsavedChanges } from '../../../core/guards/unsaved-changes.guard';
 @Component({
   selector: 'app-task-detail',
   imports: [FormsModule],
-  templateUrl: './task-detail.component.html',
-  styleUrls: ['./task-detail.component.scss']
+  templateUrl: './task-detail.html',
+  styleUrls: ['./task-detail.scss']
 })
-export class TaskDetailComponent implements OnInit, HasUnsavedChanges {
+export class TaskDetail implements OnInit, HasUnsavedChanges {
   private route = inject(ActivatedRoute);
   private router = inject(Router);
   private taskService = inject(TaskService);

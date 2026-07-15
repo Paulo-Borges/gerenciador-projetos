@@ -6,10 +6,10 @@ import { AuthService } from '../../../core/services/auth.service';
 @Component({
   selector: 'app-login',
   imports: [FormsModule],
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  templateUrl: './login.html',
+  styleUrls: ['./login.scss']
 })
-export class LoginComponent {
+export class Login {
   email = '';
   error = '';
   isLoading = false;

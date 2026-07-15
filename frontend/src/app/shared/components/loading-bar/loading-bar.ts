@@ -4,10 +4,10 @@ import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-loading-bar',
-  templateUrl: './loading-bar.component.html',
-  styleUrls: ['./loading-bar.component.scss']
+  templateUrl: './loading-bar.html',
+  styleUrls: ['./loading-bar.scss']
 })
-export class LoadingBarComponent implements OnDestroy {
+export class LoadingBar implements OnDestroy {
   isLoading = signal(false);
   private routerSub: Subscription;
 

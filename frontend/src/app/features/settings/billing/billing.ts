@@ -4,7 +4,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 @Component({
   selector: 'app-billing',
   imports: [RouterLink, RouterLinkActive],
-  templateUrl: './billing.component.html',
-  styleUrls: ['./billing.component.scss']
+  templateUrl: './billing.html',
+  styleUrls: ['./billing.scss']
 })
-export class BillingComponent {}
+export class Billing {}
