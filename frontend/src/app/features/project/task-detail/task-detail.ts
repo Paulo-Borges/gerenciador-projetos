@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { TaskApi } from '../../../core/services/task-api';
@@ -15,45 +15,40 @@ export class TaskDetail implements OnInit, HasUnsavedChanges {
   private route = inject(ActivatedRoute);
   private router = inject(Router);
   private taskApi = inject(TaskApi);
-  private cdr = inject(ChangeDetectorRef);
 
-  task: ITask | null = null;
-  editedTask: ITask | null = null;
-  isDirty = false;
-  isSaving = false;
+  task = signal<ITask | null>(null);
+  editedTask = signal<ITask | null>(null);
+  isDirty = signal(false);
+  isSaving = signal(false);
 
   ngOnInit(): void {
     const taskId = this.route.snapshot.paramMap.get('taskId')!;
     this.taskApi.getById(taskId).subscribe(task => {
-      this.task = task;
-      this.editedTask = { ...task };
-      this.cdr.markForCheck();
+      this.task.set(task);
+      this.editedTask.set({ ...task });
     });
   }
 
   hasUnsavedChanges(): boolean {
-    return this.isDirty;
+    return this.isDirty();
   }
 
   markDirty(): void {
-    this.isDirty = true;
-    this.cdr.markForCheck();
+    this.isDirty.set(true);
   }
 
   save(): void {
-    if (!this.editedTask) return;
-    this.isSaving = true;
-    this.cdr.markForCheck();
-    this.taskApi.update(this.editedTask.id, this.editedTask).subscribe({
+    const currentEdited = this.editedTask();
+    if (!currentEdited) return;
+    this.isSaving.set(true);
+    this.taskApi.update(currentEdited.id, currentEdited).subscribe({
       next: (updated) => {
-        this.task = updated;
-        this.isDirty = false;
-        this.isSaving = false;
-        this.cdr.markForCheck();
+        this.task.set(updated);
+        this.isDirty.set(false);
+        this.isSaving.set(false);
       },
       error: () => {
-        this.isSaving = false;
-        this.cdr.markForCheck();
+        this.isSaving.set(false);
       }
     });
   }

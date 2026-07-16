@@ -1,6 +1,5 @@
-import { Component, inject, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink, RouterLinkActive } from '@angular/router';
-import { ProjectApi } from '../../../core/services/project-api';
 import { IProject, ITask } from '../../../core/models';
 
 @Component({
@@ -8,22 +7,11 @@ import { IProject, ITask } from '../../../core/models';
   imports: [RouterLink, RouterLinkActive],
   templateUrl: './backlog.html'
 })
-export class Backlog implements OnInit {
+export class Backlog {
   private route = inject(ActivatedRoute);
-  private projectApi = inject(ProjectApi);
-  private cdr = inject(ChangeDetectorRef);
 
   project: IProject = this.route.parent!.snapshot.data['project'];
-  tasks: ITask[] = this.route.snapshot.data['tasks'] || [];
-
-  ngOnInit(): void {
-    this.route.data.subscribe(data => {
-      if (data['tasks']) {
-        this.tasks = data['tasks'];
-        this.cdr.markForCheck();
-      }
-    });
-  }
+  tasks = signal<ITask[]>(this.route.snapshot.data['tasks'] || []);
 
   getStatusLabel(status: string): string {
     const map: Record<string, string> = {

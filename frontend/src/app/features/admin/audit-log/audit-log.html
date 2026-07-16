@@ -20,7 +20,7 @@
           </tr>
         </thead>
         <tbody class="divide-y divide-white/[0.04]">
-          @for (log of logs; track log.id) {
+          @for (log of logs(); track log.id) {
             <tr class="hover:bg-white/[0.02] transition-colors">
               <td class="py-3.5 px-5 font-mono text-xs text-slate-500 whitespace-nowrap">{{ log.id }}</td>
               <td class="py-3.5 px-5"><span class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-semibold bg-indigo-500/15 text-indigo-300 font-mono">{{ log.action }}</span></td>

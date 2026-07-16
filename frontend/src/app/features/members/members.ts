@@ -1,6 +1,6 @@
-import { Component, inject, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { ProjectApi } from '../../core/services/project-api';
-import { IUser } from '../../core/models';
 import { InitialsPipe } from '../../shared/pipes/initials-pipe';
 
 @Component({
@@ -8,16 +8,7 @@ import { InitialsPipe } from '../../shared/pipes/initials-pipe';
   imports: [InitialsPipe],
   templateUrl: './members.html'
 })
-export class Members implements OnInit {
+export class Members {
   private projectApi = inject(ProjectApi);
-  private cdr = inject(ChangeDetectorRef);
-
-  members: IUser[] = [];
-
-  ngOnInit(): void {
-    this.projectApi.getMembers().subscribe(members => {
-      this.members = members;
-      this.cdr.markForCheck();
-    });
-  }
+  members = toSignal(this.projectApi.getMembers(), { initialValue: [] });
 }

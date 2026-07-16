@@ -1,23 +1,14 @@
-import { Component, inject, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { RouterLink } from '@angular/router';
 import { ProjectApi } from '../../core/services/project-api';
-import { IProject } from '../../core/models';
 
 @Component({
   selector: 'app-dashboard',
   imports: [RouterLink],
   templateUrl: './dashboard.html'
 })
-export class Dashboard implements OnInit {
+export class Dashboard {
   private projectApi = inject(ProjectApi);
-  private cdr = inject(ChangeDetectorRef);
-
-  projects: IProject[] = [];
-
-  ngOnInit(): void {
-    this.projectApi.getAll().subscribe(projects => {
-      this.projects = projects;
-      this.cdr.markForCheck();
-    });
-  }
+  projects = toSignal(this.projectApi.getAll(), { initialValue: [] });
 }

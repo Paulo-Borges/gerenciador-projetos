@@ -4,11 +4,11 @@
       <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight">Membros da Equipe</h1>
       <p class="text-sm sm:text-base text-slate-400 mt-1">Colaboradores ativos na plataforma e permissões de acesso</p>
     </div>
-    <span class="px-3.5 py-1.5 rounded-xl bg-indigo-500/15 border border-indigo-500/30 text-indigo-300 text-xs font-bold">{{ members.length }} ativos</span>
+    <span class="px-3.5 py-1.5 rounded-xl bg-indigo-500/15 border border-indigo-500/30 text-indigo-300 text-xs font-bold">{{ members().length }} ativos</span>
   </div>
 
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-    @for (member of members; track member.id) {
+    @for (member of members(); track member.id) {
       <div class="bg-[#13132b]/90 border border-white/10 hover:border-indigo-500/40 rounded-2xl p-6 flex items-center justify-between gap-4 transition-all duration-200 shadow-xl hover:shadow-2xl hover:shadow-indigo-500/10 hover:-translate-y-1">
         <div class="flex items-center gap-4 min-w-0">
           <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 text-white font-bold flex items-center justify-center text-base shrink-0 shadow-lg shadow-indigo-500/25">{{ member.name | initials }}</div>

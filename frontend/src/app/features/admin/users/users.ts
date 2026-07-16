@@ -1,7 +1,7 @@
-import { Component, inject, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { AdminApi } from '../../../core/services/admin-api';
-import { IUser } from '../../../core/models';
 import { InitialsPipe } from '../../../shared/pipes/initials-pipe';
 
 @Component({
@@ -9,15 +9,7 @@ import { InitialsPipe } from '../../../shared/pipes/initials-pipe';
   imports: [InitialsPipe, RouterLink, RouterLinkActive],
   templateUrl: './users.html'
 })
-export class Users implements OnInit {
+export class Users {
   private adminApi = inject(AdminApi);
-  private cdr = inject(ChangeDetectorRef);
-  users: IUser[] = [];
-
-  ngOnInit(): void {
-    this.adminApi.getUsers().subscribe(users => {
-      this.users = users;
-      this.cdr.markForCheck();
-    });
-  }
+  users = toSignal(this.adminApi.getUsers(), { initialValue: [] });
 }

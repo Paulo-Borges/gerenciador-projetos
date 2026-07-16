@@ -26,7 +26,7 @@
           </tr>
         </thead>
         <tbody class="divide-y divide-white/5">
-          @for (task of tasks; track task.id) {
+          @for (task of tasks(); track task.id) {
             <tr [id]="task.id" class="hover:bg-white/5 transition-colors group">
               <td class="py-4 px-6 font-mono text-xs font-bold text-indigo-400 whitespace-nowrap">#{{ task.id }}</td>
               <td class="py-4 px-6 font-bold text-slate-100 text-sm group-hover:text-indigo-300 transition-colors">{{ task.title }}</td>

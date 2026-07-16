@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal, computed } from '@angular/core';
+import { Component, inject, signal, computed } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { ProjectApi } from '../../../core/services/project-api';
 import { IProject, ITask } from '../../../core/models';
@@ -8,7 +8,7 @@ import { IProject, ITask } from '../../../core/models';
   imports: [RouterLink, RouterLinkActive],
   templateUrl: './board.html'
 })
-export class Board implements OnInit {
+export class Board {
   private route = inject(ActivatedRoute);
   private router = inject(Router);
   private projectApi = inject(ProjectApi);
@@ -19,14 +19,6 @@ export class Board implements OnInit {
   todoTasks = computed(() => this.tasks().filter((t) => t.status === 'todo'));
   inProgressTasks = computed(() => this.tasks().filter((t) => t.status === 'in_progress'));
   doneTasks = computed(() => this.tasks().filter((t) => t.status === 'done'));
-
-  ngOnInit(): void {
-    this.route.data.subscribe((data) => {
-      if (data['tasks']) {
-        this.tasks.set(data['tasks']);
-      }
-    });
-  }
 
   loadTasks(): void {
     this.projectApi.getTasks(this.project.id).subscribe((tasks) => {
