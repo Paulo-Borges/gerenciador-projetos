@@ -13,15 +13,15 @@ export class Login {
   error = '';
   isLoading = false;
 
-  private authManager = inject(AuthManager);
-  private router = inject(Router);
+  private readonly _authManager = inject(AuthManager);
+  private readonly _router = inject(Router);
 
   login(): void {
     this.isLoading = true;
     this.error = '';
-    this.authManager.login(this.email).subscribe({
+    this._authManager.login(this.email).subscribe({
       next: () => {
-        this.router.navigate(['/dashboard']);
+        this._router.navigate(['/dashboard']);
       },
       error: () => {
         this.error = 'Email inválido. Tente felipe@example.com ou ana@example.com';

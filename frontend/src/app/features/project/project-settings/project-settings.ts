@@ -8,6 +8,6 @@ import { IProject } from '../../../core/models';
   templateUrl: './project-settings.html'
 })
 export class ProjectSettings {
-  private route = inject(ActivatedRoute);
-  project: IProject = this.route.parent!.snapshot.data['project'];
+  private readonly _activatedRoute = inject(ActivatedRoute);
+  project: IProject = this._activatedRoute.parent!.snapshot.data['project'];
 }

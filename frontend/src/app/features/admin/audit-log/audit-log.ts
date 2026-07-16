@@ -10,6 +10,6 @@ import { AdminApi } from '../../../core/services/admin-api';
   templateUrl: './audit-log.html'
 })
 export class AuditLog {
-  private adminApi = inject(AdminApi);
-  logs = toSignal(this.adminApi.getAuditLog(), { initialValue: [] });
+  private readonly _adminApi = inject(AdminApi);
+  logs = toSignal(this._adminApi.getAuditLog(), { initialValue: [] });
 }

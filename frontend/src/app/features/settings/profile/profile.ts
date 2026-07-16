@@ -8,5 +8,5 @@ import { AuthManager } from '../../../core/services/auth-manager';
   templateUrl: './profile.html'
 })
 export class Profile {
-  authManager = inject(AuthManager);
+  readonly _authManager = inject(AuthManager);
 }

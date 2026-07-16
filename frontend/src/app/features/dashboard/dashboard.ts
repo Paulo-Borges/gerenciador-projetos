@@ -9,6 +9,6 @@ import { ProjectApi } from '../../core/services/project-api';
   templateUrl: './dashboard.html'
 })
 export class Dashboard {
-  private projectApi = inject(ProjectApi);
-  projects = toSignal(this.projectApi.getAll(), { initialValue: [] });
+  private readonly _projectApi = inject(ProjectApi);
+  projects = toSignal(this._projectApi.getAll(), { initialValue: [] });
 }

@@ -10,9 +10,9 @@ import { InitialsPipe } from '../../pipes/initials-pipe';
   templateUrl: './sidebar.html'
 })
 export class Sidebar {
-  authManager = inject(AuthManager);
+  readonly _authManager = inject(AuthManager);
 
   logout(): void {
-    this.authManager.logout();
+    this._authManager.logout();
   }
 }

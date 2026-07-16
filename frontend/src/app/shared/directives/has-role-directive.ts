@@ -5,9 +5,9 @@ import { AuthManager } from '../../core/services/auth-manager';
   selector: '[hasRole]'
 })
 export class HasRoleDirective {
-  private templateRef = inject(TemplateRef<any>);
-  private viewContainer = inject(ViewContainerRef);
-  private authManager = inject(AuthManager);
+  private readonly _templateRef = inject(TemplateRef<any>);
+  private readonly _viewContainerRef = inject(ViewContainerRef);
+  private readonly _authManager = inject(AuthManager);
   private hasView = false;
 
   hasRole = input.required<string>();
@@ -15,14 +15,14 @@ export class HasRoleDirective {
   constructor() {
     effect(() => {
       const requiredRole = this.hasRole();
-      const user = this.authManager.user();
+      const user = this._authManager.user();
       const shouldShow = user?.role === requiredRole;
 
       if (shouldShow && !this.hasView) {
-        this.viewContainer.createEmbeddedView(this.templateRef);
+        this._viewContainerRef.createEmbeddedView(this._templateRef);
         this.hasView = true;
       } else if (!shouldShow && this.hasView) {
-        this.viewContainer.clear();
+        this._viewContainerRef.clear();
         this.hasView = false;
       }
     });

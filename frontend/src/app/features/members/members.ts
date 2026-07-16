@@ -9,6 +9,6 @@ import { InitialsPipe } from '../../shared/pipes/initials-pipe';
   templateUrl: './members.html'
 })
 export class Members {
-  private projectApi = inject(ProjectApi);
-  members = toSignal(this.projectApi.getMembers(), { initialValue: [] });
+  private readonly _projectApi = inject(ProjectApi);
+  members = toSignal(this._projectApi.getMembers(), { initialValue: [] });
 }

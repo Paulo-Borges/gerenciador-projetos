@@ -10,6 +10,6 @@ import { InitialsPipe } from '../../../shared/pipes/initials-pipe';
   templateUrl: './users.html'
 })
 export class Users {
-  private adminApi = inject(AdminApi);
-  users = toSignal(this.adminApi.getUsers(), { initialValue: [] });
+  private readonly _adminApi = inject(AdminApi);
+  users = toSignal(this._adminApi.getUsers(), { initialValue: [] });
 }

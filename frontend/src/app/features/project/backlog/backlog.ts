@@ -8,10 +8,10 @@ import { IProject, ITask } from '../../../core/models';
   templateUrl: './backlog.html'
 })
 export class Backlog {
-  private route = inject(ActivatedRoute);
+  private readonly _activatedRoute = inject(ActivatedRoute);
 
-  project: IProject = this.route.parent!.snapshot.data['project'];
-  tasks = signal<ITask[]>(this.route.snapshot.data['tasks'] || []);
+  project: IProject = this._activatedRoute.parent!.snapshot.data['project'];
+  tasks = signal<ITask[]>(this._activatedRoute.snapshot.data['tasks'] || []);
 
   getStatusLabel(status: string): string {
     const map: Record<string, string> = {
