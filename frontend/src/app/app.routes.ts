@@ -1,24 +1,17 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './core/guards/auth-guard';
 import { roleGuard } from './core/guards/role-guard';
-import { AuthLayout } from './shared/layouts/auth-layout/auth-layout';
 import { MainLayout } from './shared/layouts/main-layout/main-layout';
 
 export const routes: Routes = [
   // Redirect raiz
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
 
-  // Auth (sem guard)
+  // Auth (página de login direta)
   {
-    path: '',
-    component: AuthLayout,
-    children: [
-      {
-        path: 'login',
-        loadChildren: () => import('./features/auth/auth.routes').then(m => m.AUTH_ROUTES),
-        title: 'Login'
-      }
-    ]
+    path: 'login',
+    loadComponent: () => import('./features/auth/login/login').then(m => m.Login),
+    title: 'Login'
   },
 
   // Área Principal Protegida
