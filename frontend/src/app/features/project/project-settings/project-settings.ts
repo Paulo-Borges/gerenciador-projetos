@@ -1,15 +1,15 @@
-import { Component, inject } from '@angular/core';
-import { ActivatedRoute, RouterLink, RouterLinkActive } from '@angular/router';
+import { Component } from '@angular/core';
 import { IProject } from '../../../core/models';
 
 @Component({
   selector: 'app-project-settings',
-  imports: [RouterLink, RouterLinkActive],
+  imports: [],
   templateUrl: './project-settings.html'
 })
 export class ProjectSettings {
-  //TODO: remover
-  private readonly _activatedRoute = inject(ActivatedRoute);
-  //TODO: remover e mockar projeto
-  project: IProject = this._activatedRoute.parent!.snapshot.data['project'];
+  project: IProject = {
+    id: 'PRJ-101',
+    name: 'Projeto Phoenix',
+    description: 'Plataforma de gestão de projetos ágeis com IA',
+  };
 }

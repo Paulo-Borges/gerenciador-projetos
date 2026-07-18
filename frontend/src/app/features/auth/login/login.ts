@@ -1,6 +1,5 @@
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
 import { AuthManager } from '../../../core/services/auth-manager';
 
 @Component({
@@ -14,16 +13,13 @@ export class Login {
   isLoading = false;
 
   private readonly _authManager = inject(AuthManager);
-  // TODO: Remover router
-  private readonly _router = inject(Router);
 
   login(): void {
     this.isLoading = true;
     this.error = '';
     this._authManager.login(this.email).subscribe({
       next: () => {
-        // TODO: Remover redirecionamento para dashboard
-        this._router.navigate(['/dashboard']);
+
       },
       error: () => {
         this.error = 'Email inválido. Tente felipe@example.com ou ana@example.com';

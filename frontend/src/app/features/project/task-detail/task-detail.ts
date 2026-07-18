@@ -1,6 +1,5 @@
 import { Component, OnInit, signal, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
 import { ITask } from '../../../core/models';
 import { TaskApi } from '../../../core/services/task-api';
 import { HasUnsavedChanges } from '../../../core/guards/unsaved-changes-guard';
@@ -12,25 +11,26 @@ import { HasUnsavedChanges } from '../../../core/guards/unsaved-changes-guard';
   styleUrls: ['./task-detail.scss']
 })
 export class TaskDetail implements OnInit, HasUnsavedChanges {
-  //TODO: remover ActivatedRoute
-  private readonly _activatedRoute = inject(ActivatedRoute);
-  //TODO: remover Router
-  private readonly _router = inject(Router);
   private readonly _taskApi = inject(TaskApi);
 
-  //TODO: deixar um objeto de task mockado nesse signal
-  task = signal<ITask | null>(null);
-  editedTask = signal<ITask | null>(null);
+  task = signal<ITask>({
+    id: 'TSK-1029',
+    projectId: 'PRJ-101',
+    title: 'Implementar autenticação JWT',
+    description: 'Criar o fluxo de login com access token e refresh token no backend e frontend.',
+    status: 'in_progress'
+  });
+  editedTask = signal<ITask | null>({
+    id: 'TSK-1029',
+    projectId: 'PRJ-101',
+    title: 'Implementar autenticação JWT',
+    description: 'Criar o fluxo de login com access token e refresh token no backend e frontend.',
+    status: 'in_progress'
+  });
   isDirty = signal(false);
   isSaving = signal(false);
 
   ngOnInit(): void {
-    //TODO: remover snapshot e if
-    const task = this._activatedRoute.snapshot.data['task'];
-    if (task) {
-      this.task.set(task);
-      this.editedTask.set({ ...task });
-    }
   }
 
   hasUnsavedChanges(): boolean {
@@ -58,9 +58,6 @@ export class TaskDetail implements OnInit, HasUnsavedChanges {
   }
 
   close(): void {
-    //TODO: remover
-    this._router.navigate([{ outlets: { detail: null } }], {
-      relativeTo: this._activatedRoute.parent
-    });
+
   }
 }

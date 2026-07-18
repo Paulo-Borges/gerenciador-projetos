@@ -1,5 +1,3 @@
-<!-- TODO: remover o routerlink e o routerlinkactive -->
-<!-- TODO: deixar apenas um botão com os estilos de css para rota ativa, ele vai ter dois class -->
 <div class="space-y-8 max-w-7xl mx-auto">
   <div class="border-b border-white/10 pb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
     <div>
@@ -12,16 +10,13 @@
       <p class="text-sm sm:text-base text-slate-400 mt-1">Ajustes gerais e parâmetros do projeto</p>
     </div>
     <nav class="flex flex-wrap gap-2 sm:gap-2.5 bg-[#13132b] p-1.5 rounded-2xl border border-white/10 self-start">
-      <a [routerLink]="['../board']"
-        routerLinkActive="!bg-indigo-500 !text-white font-bold shadow-md shadow-indigo-500/30"
+      <a class="!bg-indigo-500 !text-white font-bold shadow-md shadow-indigo-500/30"
         class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-400 hover:text-slate-200 transition-all flex items-center gap-2">📌
         Kanban Board</a>
-      <a [routerLink]="['../backlog']"
-        routerLinkActive="!bg-indigo-500 !text-white font-bold shadow-md shadow-indigo-500/30"
+      <a
         class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-400 hover:text-slate-200 transition-all flex items-center gap-2">📋
         Backlog</a>
-      <a [routerLink]="['../settings']"
-        routerLinkActive="!bg-indigo-500 !text-white font-bold shadow-md shadow-indigo-500/30"
+      <a
         class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-400 hover:text-slate-200 transition-all flex items-center gap-2">⚙️
         Configurações</a>
     </nav>

@@ -1,11 +1,9 @@
 import { Component, inject } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthManager } from '../../../core/services/auth-manager';
 
 @Component({
   selector: 'app-profile',
-  //TODO: remover
-  imports: [RouterLink, RouterLinkActive],
+  imports: [],
   templateUrl: './profile.html'
 })
 export class Profile {

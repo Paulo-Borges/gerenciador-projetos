@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Dashboard } from '../../../features/dashboard/dashboard';
 import { Sidebar } from '../../components/sidebar/sidebar';
 
 @Component({
   selector: 'app-main-layout',
-  imports: [RouterOutlet, Sidebar],
+  imports: [Dashboard, Sidebar],
   templateUrl: './main-layout.html'
 })
 export class MainLayout {

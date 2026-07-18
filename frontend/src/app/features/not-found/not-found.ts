@@ -6,4 +6,4 @@ import { RouterLink } from '@angular/router';
   imports: [RouterLink],
   templateUrl: './not-found.html'
 })
-export class NotFound {}
+export class NotFound { }

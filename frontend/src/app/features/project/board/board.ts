@@ -1,11 +1,11 @@
 import { Component, inject, signal, computed } from '@angular/core';
-import { ActivatedRoute, Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProjectApi } from '../../../core/services/project-api';
 import { IProject, ITask } from '../../../core/models';
 
 @Component({
   selector: 'app-board',
-  imports: [RouterLink, RouterLinkActive],
+  imports: [],
   templateUrl: './board.html'
 })
 export class Board {
@@ -13,11 +13,13 @@ export class Board {
   private readonly _router = inject(Router);
   private readonly _projectApi = inject(ProjectApi);
 
-  // TODO: remover snapshot e adicionar objeto mockado
-  project: IProject = this._activatedRoute.parent!.snapshot.data['project'];
+  project: IProject = {
+    id: 'PRJ-101',
+    name: 'Projeto Phoenix',
+    description: 'Plataforma de gestão de projetos ágeis com IA',
+  };
 
-  // TODO: remover snapshot e adicionar array vazio
-  tasks = signal<ITask[]>(this._activatedRoute.snapshot.data['tasks'] || []);
+  tasks = signal<ITask[]>([]);
 
   todoTasks = computed(() => this.tasks().filter((t) => t.status === 'todo'));
   inProgressTasks = computed(() => this.tasks().filter((t) => t.status === 'in_progress'));
@@ -30,9 +32,6 @@ export class Board {
   }
 
   openTask(taskId: string): void {
-    // TODO: remover
-    this._router.navigate([{ outlets: { detail: ['task', taskId] } }], {
-      relativeTo: this._activatedRoute.parent,
-    });
+
   }
 }
