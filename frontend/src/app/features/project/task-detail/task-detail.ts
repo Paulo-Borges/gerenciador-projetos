@@ -1,8 +1,8 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit, signal, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { TaskApi } from '../../../core/services/task-api';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ITask } from '../../../core/models';
+import { TaskApi } from '../../../core/services/task-api';
 import { HasUnsavedChanges } from '../../../core/guards/unsaved-changes-guard';
 
 @Component({
@@ -12,21 +12,25 @@ import { HasUnsavedChanges } from '../../../core/guards/unsaved-changes-guard';
   styleUrls: ['./task-detail.scss']
 })
 export class TaskDetail implements OnInit, HasUnsavedChanges {
+  //TODO: remover ActivatedRoute
   private readonly _activatedRoute = inject(ActivatedRoute);
+  //TODO: remover Router
   private readonly _router = inject(Router);
   private readonly _taskApi = inject(TaskApi);
 
+  //TODO: deixar um objeto de task mockado nesse signal
   task = signal<ITask | null>(null);
   editedTask = signal<ITask | null>(null);
   isDirty = signal(false);
   isSaving = signal(false);
 
   ngOnInit(): void {
-    const taskId = this._activatedRoute.snapshot.paramMap.get('taskId')!;
-    this._taskApi.getById(taskId).subscribe(task => {
+    //TODO: remover snapshot e if
+    const task = this._activatedRoute.snapshot.data['task'];
+    if (task) {
       this.task.set(task);
       this.editedTask.set({ ...task });
-    });
+    }
   }
 
   hasUnsavedChanges(): boolean {
@@ -54,6 +58,7 @@ export class TaskDetail implements OnInit, HasUnsavedChanges {
   }
 
   close(): void {
+    //TODO: remover
     this._router.navigate([{ outlets: { detail: null } }], {
       relativeTo: this._activatedRoute.parent
     });

@@ -8,6 +8,8 @@ import { IProject } from '../../../core/models';
   templateUrl: './project-settings.html'
 })
 export class ProjectSettings {
+  //TODO: remover
   private readonly _activatedRoute = inject(ActivatedRoute);
+  //TODO: remover e mockar projeto
   project: IProject = this._activatedRoute.parent!.snapshot.data['project'];
 }

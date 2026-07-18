@@ -1,8 +1,7 @@
-import { Component, inject } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { RouterLink, RouterLinkActive } from '@angular/router';
-import { AdminApi } from '../../../core/services/admin-api';
+import { Component, inject, signal } from '@angular/core';
+import { RouterLink, RouterLinkActive, ActivatedRoute } from '@angular/router';
 import { InitialsPipe } from '../../../shared/pipes/initials-pipe';
+import { IUser } from '../../../core/models';
 
 @Component({
   selector: 'app-users',
@@ -10,6 +9,8 @@ import { InitialsPipe } from '../../../shared/pipes/initials-pipe';
   templateUrl: './users.html'
 })
 export class Users {
-  private readonly _adminApi = inject(AdminApi);
-  users = toSignal(this._adminApi.getUsers(), { initialValue: [] });
+  //TODO: remover
+  private readonly _activatedRoute = inject(ActivatedRoute);
+  //TODO: mock de lista vazia
+  users = signal<IUser[]>(this._activatedRoute.snapshot.data['users'] || []);
 }

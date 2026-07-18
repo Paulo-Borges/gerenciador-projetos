@@ -24,14 +24,18 @@ export const appConfig: ApplicationConfig = {
     provideZonelessChangeDetection(),
     provideRouter(
       routes,
+      // TODO: Remover preloading
       withPreloading(CustomPreloadingStrategy),
+      // TODO: Remover in-memory scrolling
       withInMemoryScrolling({
         scrollPositionRestoration: 'enabled',
         anchorScrolling: 'enabled',
       }),
+      // TODO: Remover view transitions
       withViewTransitions(),
     ),
     provideHttpClient(withInterceptors([authInterceptor, errorInterceptor])),
+    // TODO: Remover
     { provide: TitleStrategy, useClass: CustomTitleStrategy },
   ],
 };

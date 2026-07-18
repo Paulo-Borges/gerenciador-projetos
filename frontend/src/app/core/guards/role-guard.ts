@@ -12,7 +12,7 @@ export function roleGuard(requiredRole: string): CanActivateFn {
       return true;
     }
 
-    const urlTree = router.createUrlTree(['/workspace', 'w1', 'dashboard']);
+    const urlTree = router.createUrlTree(['/dashboard']);
     return new RedirectCommand(urlTree, { replaceUrl: true });
   };
 }

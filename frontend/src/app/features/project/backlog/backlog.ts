@@ -8,9 +8,12 @@ import { IProject, ITask } from '../../../core/models';
   templateUrl: './backlog.html'
 })
 export class Backlog {
+  //TODO: remover
   private readonly _activatedRoute = inject(ActivatedRoute);
 
+  //TODO: remover e mockar um projeto
   project: IProject = this._activatedRoute.parent!.snapshot.data['project'];
+  // TODO: remover e mockar uma lista vazia
   tasks = signal<ITask[]>(this._activatedRoute.snapshot.data['tasks'] || []);
 
   getStatusLabel(status: string): string {

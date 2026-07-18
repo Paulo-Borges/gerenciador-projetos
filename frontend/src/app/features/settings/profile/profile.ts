@@ -4,6 +4,7 @@ import { AuthManager } from '../../../core/services/auth-manager';
 
 @Component({
   selector: 'app-profile',
+  //TODO: remover
   imports: [RouterLink, RouterLinkActive],
   templateUrl: './profile.html'
 })

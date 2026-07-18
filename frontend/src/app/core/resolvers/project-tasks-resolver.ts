@@ -3,6 +3,7 @@ import { ResolveFn } from '@angular/router';
 import { ITask } from '../models';
 import { ProjectApi } from '../services/project-api';
 
+// TODO: remover constante
 export const projectTasksResolver: ResolveFn<ITask[]> = (route) => {
   const projectApi = inject(ProjectApi);
   const projectId = route.parent?.paramMap.get('projectId') || route.paramMap.get('projectId')!;

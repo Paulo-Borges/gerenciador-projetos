@@ -13,7 +13,10 @@ export class Board {
   private readonly _router = inject(Router);
   private readonly _projectApi = inject(ProjectApi);
 
+  // TODO: remover snapshot e adicionar objeto mockado
   project: IProject = this._activatedRoute.parent!.snapshot.data['project'];
+
+  // TODO: remover snapshot e adicionar array vazio
   tasks = signal<ITask[]>(this._activatedRoute.snapshot.data['tasks'] || []);
 
   todoTasks = computed(() => this.tasks().filter((t) => t.status === 'todo'));
@@ -27,6 +30,7 @@ export class Board {
   }
 
   openTask(taskId: string): void {
+    // TODO: remover
     this._router.navigate([{ outlets: { detail: ['task', taskId] } }], {
       relativeTo: this._activatedRoute.parent,
     });

@@ -1,8 +1,7 @@
-import { Component, inject } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { Component, inject, signal } from '@angular/core';
 import { DatePipe } from '@angular/common';
-import { RouterLink, RouterLinkActive } from '@angular/router';
-import { AdminApi } from '../../../core/services/admin-api';
+import { RouterLink, RouterLinkActive, ActivatedRoute } from '@angular/router';
+import { IAuditLog } from '../../../core/models';
 
 @Component({
   selector: 'app-audit-log',
@@ -10,6 +9,8 @@ import { AdminApi } from '../../../core/services/admin-api';
   templateUrl: './audit-log.html'
 })
 export class AuditLog {
-  private readonly _adminApi = inject(AdminApi);
-  logs = toSignal(this._adminApi.getAuditLog(), { initialValue: [] });
+  //TODO: remover
+  private readonly _activatedRoute = inject(ActivatedRoute);
+  //TODO: mock de lista vazia
+  logs = signal<IAuditLog[]>(this._activatedRoute.snapshot.data['logs'] || []);
 }
