@@ -4,9 +4,6 @@ import { roleGuard } from './core/guards/role-guard';
 import { MainLayout } from './shared/layouts/main-layout/main-layout';
 
 export const routes: Routes = [
-  // Redirect raiz
-  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-
   // Auth (página de login direta)
   {
     path: 'login',
@@ -20,6 +17,9 @@ export const routes: Routes = [
     component: MainLayout,
     canActivate: [authGuard],
     children: [
+      // Redirecionamento padrão ao acessar a raiz protegida ('/')
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+
       {
         path: 'dashboard',
         loadComponent: () => import('./features/dashboard/dashboard').then(m => m.Dashboard),
