@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
-import { Login } from './features/auth/login/login';
+import { RouterOutlet } from '@angular/router';
+import { LoadingBar } from './shared/components/loading-bar/loading-bar';
 
 @Component({
   selector: 'app-root',
-  imports: [Login],
+  imports: [RouterOutlet, LoadingBar],
   template: `
-    <app-login />
+    <app-loading-bar />
+    <router-outlet />
   `,
-  styles: []
+  styles: [],
 })
-export class App { }
+export class App {}
