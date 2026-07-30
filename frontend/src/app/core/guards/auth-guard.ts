@@ -1,4 +1,4 @@
-import { CanActivateFn, CanMatchFn, RedirectCommand, Router } from '@angular/router';
+import { CanMatchFn, RedirectCommand, Router } from '@angular/router';
 import { AuthManager } from '../services/auth-manager';
 import { inject } from '@angular/core';
 
