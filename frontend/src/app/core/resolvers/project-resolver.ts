@@ -2,6 +2,7 @@ import { ResolveFn } from '@angular/router';
 import { IProject } from '../models';
 import { inject } from '@angular/core';
 import { ProjectApi } from '../services/project-api';
+import { Observable } from 'rxjs';
 
 // /projects/p1
 export const projectResolver: ResolveFn<IProject> = (route) => {
