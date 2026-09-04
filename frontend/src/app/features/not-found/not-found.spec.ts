@@ -1,6 +1,8 @@
 import { provideRouter } from '@angular/router';
 import { NotFound } from './not-found';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import { RouterLink } from '@angular/router';
 
 describe('Not Found Component', () => {
   let component: NotFound;
@@ -45,5 +47,14 @@ describe('Not Found Component', () => {
     const descricaoP = html.querySelector('[data-testid="page-description"]');
     expect(descricaoP).toBeTruthy();
     expect(descricaoP?.textContent).toContain(' não existe ou foi movida ');
+  });
+
+  it('deve encontrar o link usando o debugElement', () => {
+    const debugDom = fixture.debugElement;
+    const linkDebugElement = debugDom.query(By.directive(RouterLink));
+    expect(linkDebugElement).toBeTruthy();
+
+    const htmlA: HTMLAnchorElement = linkDebugElement.nativeElement;
+    expect(htmlA.getAttribute('href')).toBe('/');
   });
 });
