@@ -33,4 +33,17 @@ describe('Not Found Component', () => {
     const linkA = html.querySelector('a');
     expect(linkA?.getAttribute('href')).toBe('/');
   });
+
+  it('deve exibir o titulo de A página que você está procurando não existe ou foi movida para outro endereço. ', () => {
+    const html: HTMLElement = fixture.nativeElement;
+    const paragrafoP = html.querySelector('p');
+    expect(paragrafoP?.textContent).toBeTruthy();
+  });
+
+  it('deve exibir a descrição da página de forma resiliente (usando data-testid)', () => {
+    const html: HTMLElement = fixture.nativeElement;
+    const descricaoP = html.querySelector('[data-testid="page-description"]');
+    expect(descricaoP).toBeTruthy();
+    expect(descricaoP?.textContent).toContain(' não existe ou foi movida ');
+  });
 });
