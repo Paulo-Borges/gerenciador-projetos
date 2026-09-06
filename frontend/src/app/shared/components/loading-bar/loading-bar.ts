@@ -1,18 +1,24 @@
 import { Component, OnDestroy, signal } from '@angular/core';
-import { Router, NavigationStart, NavigationEnd, NavigationCancel, NavigationError } from '@angular/router';
+import {
+  Router,
+  NavigationStart,
+  NavigationEnd,
+  NavigationCancel,
+  NavigationError,
+} from '@angular/router';
 import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-loading-bar',
   templateUrl: './loading-bar.html',
-  styleUrls: ['./loading-bar.scss']
+  styleUrls: ['./loading-bar.scss'],
 })
 export class LoadingBar implements OnDestroy {
-  isLoading = signal(false);
+  isLoading = signal(true);
   private routerSub: Subscription;
 
   constructor(private router: Router) {
-    this.routerSub = this.router.events.subscribe(event => {
+    this.routerSub = this.router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
         this.isLoading.set(true);
       } else if (
